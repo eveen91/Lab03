@@ -9,38 +9,32 @@ namespace Lab03.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class BooksController : ControllerBase
     {
         //post
-        [HttpPost]
-        public void AddUser()
+        public void AddBook()
         {
         }
 
         //get id
-        [HttpGet("{Id}")]
-        public string GetUserById(string Id)
+        public string GetBookById()
         {
-            string user = "";
-            return user;
+            return "GetBookById";
         }
 
         //get
-        [HttpGet]
-        public List<string> GetAllUsers()
+        public List<string> GetAllBooks()
         {
-            return new List<string> { "User1", "User2" };
+            return new List<string> { "GetAllBooks" };
         }
 
         //post
-        [HttpPost]
-        public void UpdateUserById()
+        public void UpdateBookById()
         {
 
         }
-
         //?post
-        public void DeleteUserById()
+        public void DeleteBookById()
         {
 
         }

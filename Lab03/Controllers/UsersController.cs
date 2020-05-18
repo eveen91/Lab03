@@ -5,37 +5,42 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-
 namespace Lab03.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookController : ControllerBase
+    public class UsersController : ControllerBase
     {
         //post
-        public void AddBook()
+        [HttpPost]
+        public void AddUser()
         {
         }
 
         //get id
-        public string GetBookById()
+        [HttpGet("{Id}")]
+        public string GetUserById(string Id)
         {
-            return "GetBookById";
+            string user = "";
+            return user;
         }
 
         //get
-        public List<string> GetAllBooks()
+        [HttpGet]
+        public List<string> GetAllUsers()
         {
-            return new List<string> { "GetAllBooks" };
+            return new List<string> { "User1", "User2" };
         }
 
         //post
-        public void UpdateBookById()
+        [HttpPost]
+        public void UpdateUserById()
         {
 
         }
+
         //?post
-        public void DeleteBookById()
+        public void DeleteUserById()
         {
 
         }
