@@ -10,7 +10,10 @@ namespace Lab03
     public class Books
     {
         public List<Book> books = new List<Book>();
-
+        public Books()
+        {
+            LoadData();
+        }
         public void AddBook(string ID, string Author, string Title, string IsRented)
         {
             books.Add(new Book() { Author = Author, Title = Title, IsRented = bool.Parse(IsRented), ID = int.Parse(ID) });

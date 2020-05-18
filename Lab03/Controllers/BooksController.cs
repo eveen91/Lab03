@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Lab03.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,21 +12,25 @@ namespace Lab03.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
+        Books BooksList = new Books();
         //post
         public void AddBook()
         {
         }
 
         //get id
-        public string GetBookById()
+        [HttpGet("{Id}")]
+        public Book GetBookById(string Id)
         {
-            return "GetBookById";
+            var query = from book in BooksList.books where book.ID.Equals(int.Parse(Id)) select book;
+            query.First();
+            return query.First();
         }
 
-        //get
-        public List<string> GetAllBooks()
+        [HttpGet]
+        public List<Book> GetAllBooks()
         {
-            return new List<string> { "GetAllBooks" };
+            return BooksList.books;
         }
 
         //post

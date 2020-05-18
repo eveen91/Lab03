@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<books>
+  <book>
+    <ID>1</ID>
+    <IsRented>false</IsRented>
+    <Author>Magda Knedler</Author>
+    <Title>Położna z Auschwitz</Title>
+  </book>
+  <book>
+    <ID>2</ID>
+    <IsRented>false</IsRented>
+    <Author>Sharon Cameron</Author>
+    <Title>Światło ukryte w mroku</Title>
+  </book>
+</books>

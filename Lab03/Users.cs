@@ -9,6 +9,10 @@ namespace Lab03
 {
     public class Users
     {
+        public Users()
+        {
+            LoadData();
+        }
         public List<User> users = new List<User>();
 
         public void AddBook(string ID, string EMail, string Name, string Surname)

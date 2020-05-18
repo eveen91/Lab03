@@ -11,6 +11,8 @@ namespace Lab03.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        Users users = new Users();
+
         //post
         [HttpPost]
         public void AddUser()
