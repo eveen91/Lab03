@@ -11,27 +11,32 @@ namespace Lab03.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-
+        //post
         public void AddUser()
         {
         }
 
+        //get id
         public string GetUserById()
         {
             string user = "";
             return user;
         }
 
+        //get
+        [HttpGet]
         public List<string> GetAllUsers()
         {
             return new List<string> { "User1", "User2" };
         }
 
+        //post
         public void UpdateUserById()
         {
 
         }
 
+        //?post
         public void DeleteUserById()
         {
 

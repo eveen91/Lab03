@@ -12,24 +12,28 @@ namespace Lab03.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
+        //post
         public void AddBook()
         {
         }
 
+        //get id
         public string GetBookById()
         {
         }
 
+        //get
         public List<Models.Book> GetAllBooks()
         {
         
         }
 
+        //post
         public void UpdateBookById()
         {
 
         }
-
+        //?post
         public void DeleteBookById()
         {
 
