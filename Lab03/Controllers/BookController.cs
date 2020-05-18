@@ -20,12 +20,13 @@ namespace Lab03.Controllers
         //get id
         public string GetBookById()
         {
+            return "GetBookById";
         }
 
         //get
-        public List<Models.Book> GetAllBooks()
+        public List<string> GetAllBooks()
         {
-        
+            return new List<string> { "GetAllBooks" };
         }
 
         //post

@@ -12,12 +12,14 @@ namespace Lab03.Controllers
     public class UserController : ControllerBase
     {
         //post
+        [HttpPost]
         public void AddUser()
         {
         }
 
         //get id
-        public string GetUserById()
+        [HttpGet("{Id}")]
+        public string GetUserById(string Id)
         {
             string user = "";
             return user;
@@ -31,6 +33,7 @@ namespace Lab03.Controllers
         }
 
         //post
+        [HttpPost]
         public void UpdateUserById()
         {
 
