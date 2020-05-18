@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<users>
+  <user>
+    <ID>1</ID>
+    <EMail>eveen91@gmail.com</EMail>
+    <Name>Sebastian</Name>
+    <Surname>Jedynak</Surname>
+  </user>
+  <user>
+    <ID>2</ID>
+    <EMail>test@gmail.com</EMail>
+    <Name>Adam</Name>
+    <Surname>Testowy</Surname>
+  </user>
+  <user>
+    <ID>3</ID>
+    <EMail>xenapptest@vectra.pl</EMail>
+    <Name>xenapp</Name>
+    <Surname>test</Surname>
+  </user>
+</users>
