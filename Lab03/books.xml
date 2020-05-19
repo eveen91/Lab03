@@ -5,17 +5,20 @@
     <Author>Magda Knedler</Author>
     <Title>Położna z Auschwitz</Title>
     <IsRented>False</IsRented>
+    <RentHistory>1;2</RentHistory>
   </book>
   <book>
     <ID>2</ID>
     <Author>Sharon Cameron</Author>
     <Title>Światło ukryte w mroku</Title>
     <IsRented>False</IsRented>
+    <RentHistory></RentHistory>
   </book>
   <book>
     <ID>3</ID>
     <Author>bbb</Author>
     <Title>afss</Title>
     <IsRented>True</IsRented>
+    <RentHistory></RentHistory>
   </book>
 </books>

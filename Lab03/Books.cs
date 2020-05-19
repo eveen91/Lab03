@@ -27,7 +27,8 @@ namespace Lab03
                     ID = int.Parse(_book.Element("ID").Value),
                     Title = _book.Element("Title").Value,
                     Author = _book.Element("Author").Value,
-                    IsRented = bool.Parse(_book.Element("IsRented").Value)
+                    IsRented = bool.Parse(_book.Element("IsRented").Value),
+                    RentHistory = LoadRentData(_book.Element("RentHistory").Value)
                 });
             }
             return books;
@@ -40,10 +41,28 @@ namespace Lab03
                                            new XElement("ID", book.ID.ToString()),
                                            new XElement("Author", book.Author),
                                            new XElement("Title", book.Title),
-                                           new XElement("IsRented", book.IsRented.ToString())
+                                           new XElement("IsRented", book.IsRented.ToString()),
+                                           new XElement("RentHistory", string.Join(";",book.RentHistory))
                                                );
             XElement doc = new XElement("books", serial);
             doc.Save("books.xml");
+        }
+
+        private List<int> LoadRentData(string input)
+        {
+            string LenderID = input;
+            List<int> RentData = new List<int>();
+            if (input != null && input != "")
+            {
+                while (LenderID.IndexOf(";") != -1)
+                {
+                    string BookId = LenderID.Substring(0, LenderID.IndexOf(";"));
+                    LenderID = LenderID.Substring(LenderID.IndexOf(";") + 1);
+                    RentData.Add(int.Parse(BookId));
+                }
+                RentData.Add(int.Parse(LenderID));
+            }
+            return RentData;
         }
     }
 }
