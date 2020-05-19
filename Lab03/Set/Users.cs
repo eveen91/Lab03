@@ -1,6 +1,7 @@
 ﻿using Lab03.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -18,9 +19,7 @@ namespace Lab03.Set
 
         public List<User> LoadData()
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            string resourceName = assembly.GetManifestResourceNames().Single(str => str.EndsWith("users.xml"));
-            XDocument xdoc1 = XDocument.Load("users.xml");
+            XDocument xdoc1 = XDocument.Load("Data\\users.xml");
             foreach (var _user in xdoc1.Element("users").Elements("user"))
             {
                 users.Add(new User()
@@ -28,8 +27,7 @@ namespace Lab03.Set
                     ID = int.Parse(_user.Element("ID").Value),
                     EMail = _user.Element("EMail").Value,
                     Name = _user.Element("Name").Value,
-                    Surname = _user.Element("Surname").Value,
-                    RentHistory = LoadRentData(_user.Element("RentHistory").Value)
+                    Surname = _user.Element("Surname").Value
                 });
             }
             return users;
@@ -42,31 +40,10 @@ namespace Lab03.Set
                                            new XElement("ID", user.ID.ToString()),
                                            new XElement("EMail", user.EMail),
                                            new XElement("Name", user.Name),
-                                           new XElement("Surname", user.Surname),
-                                           new XElement("RentHistory", string.Join(";", user.RentHistory))
+                                           new XElement("Surname", user.Surname)
                                                );
             XElement doc = new XElement("users", serial);
-            doc.Save("users.xml");
+            doc.Save("Data\\users.xml");
         }
-        private List<int> LoadRentData(string input)
-        {
-            string BookIdCollection = input;
-            List<int> RentData = new List<int>();
-            if (input != null && input != "")
-            {
-                while (BookIdCollection.IndexOf(";") != -1)
-                {
-                    string BookId = BookIdCollection.Substring(0, BookIdCollection.IndexOf(";"));
-                    BookIdCollection = BookIdCollection.Substring(BookIdCollection.IndexOf(";") + 1);
-                    RentData.Add(int.Parse(BookId));
-                }
-                RentData.Add(int.Parse(BookIdCollection));
-            }
-            return RentData;
-        }
-        /*        public int AddBookToRentalHistory()
-                { 
-
-                }*/
     }
 }
