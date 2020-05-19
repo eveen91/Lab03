@@ -15,29 +15,48 @@ namespace Lab03.Controllers
     {
         Books BooksList = new Books();
         Users UsersList = new Users();
+        LibraryHistory libraryHistory = new LibraryHistory();
 
+        //userzy który wyporzyczyli daną książkę
         [HttpGet("BookRentedByUsers/{Id}")]
         public List<User> BookRentedByUser(string Id)
         {
-            var GivenBook = BooksList.books[BooksList.books.FindIndex(x => x.ID == int.Parse(Id))];
+            /* var GivenBook = BooksList.books[BooksList.books.FindIndex(x => x.ID == int.Parse(Id))];
+             List<User> LendersList = new List<User>();
+             foreach (var UserId in GivenBook.RentHistory)
+             {
+                 LendersList.Add(UsersList.users.Find(x => x.ID == UserId));
+             }
+             return LendersList;*/
+
             List<User> LendersList = new List<User>();
-            foreach (var UserId in GivenBook.RentHistory)
+            var ListOfUsers = libraryHistory.GetUsersThatRentedBookWithId(int.Parse(Id));
+            foreach (var User in ListOfUsers)
             {
-                LendersList.Add(UsersList.users.Find(x => x.ID == UserId));
+                LendersList.Add(UsersList.users.Find(x => x.ID == User));
             }
             return LendersList;
         }
 
+        //książki wyporzyczone prze usera o id
         [HttpGet("UserHistoryRent/{Id}")]
         public List<Book> UserHistoryRent(string Id)
         {
-            var GivenUser = UsersList.users[UsersList.users.FindIndex(x => x.ID == int.Parse(Id))];
+            /*            var GivenUser = UsersList.users[UsersList.users.FindIndex(x => x.ID == int.Parse(Id))];
+                        List<Book> RentedBooks = new List<Book>();
+                        foreach (var BookId in GivenUser.RentHistory)
+                        {
+                            RentedBooks.Add(BooksList.books.Find(x => x.ID == BookId));
+                        }
+                        return RentedBooks;*/
+            var ListOfRentedBooks = libraryHistory.GetBooksRentedByUser(int.Parse(Id));
             List<Book> RentedBooks = new List<Book>();
-            foreach (var BookId in GivenUser.RentHistory)
+            foreach (var Book in ListOfRentedBooks)
             {
-                RentedBooks.Add(BooksList.books.Find(x => x.ID == BookId));
+                RentedBooks.Add(BooksList.books.Find(x => x.ID == Book));
             }
             return RentedBooks;
+
         }
 
     }

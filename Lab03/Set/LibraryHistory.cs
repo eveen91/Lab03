@@ -12,7 +12,7 @@ namespace Lab03.Set
         private List<RentHistory> UsersRents = new List<RentHistory>();
         private List<RentHistory> BooksRents = new List<RentHistory>();
 
-        LibraryHistory()
+        public LibraryHistory()
         {
             LoadData();
         }
@@ -23,14 +23,14 @@ namespace Lab03.Set
             BooksRents[BooksRents.FindIndex(x => x.ID == BookId)].History.Add(UserId);
             SaveData();
         }
-
+        //zwraca listę wypożyczeń danego usera
         public List<int> GetBooksRentedByUser(int UserId)
         {
             var UserHistory = UsersRents[UsersRents.FindIndex(x => x.ID == UserId)];
             return UserHistory.History;
         }
-
-        public List<int> GetUsersRentedBookById(int BookId)
+        //zwraca listę userów którzy wyporzycili książkę o ID x
+        public List<int> GetUsersThatRentedBookWithId(int BookId)
         {
             var BookHistory = BooksRents[BooksRents.FindIndex(x => x.ID == BookId)];
             return BookHistory.History;
