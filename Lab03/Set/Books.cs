@@ -20,7 +20,6 @@ namespace Lab03.Set
         public List<Book> LoadData()
         {
             XDocument xdoc1 = XDocument.Load("Data\\books.xml");
-            //List<Book> books = new List<Book>();
             foreach (var _book in xdoc1.Element("books").Elements("book"))
             {
                 books.Add(new Book()

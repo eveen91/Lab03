@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Lab03.Set
 {
@@ -38,44 +39,64 @@ namespace Lab03.Set
 
         private void LoadData()
         {
-        
+            XDocument xdoc1 = XDocument.Load("Data\\BooksHistory.xml");
+            foreach (var _book in xdoc1.Element("books").Elements("book"))
+            {
+                UsersRents.Add(new RentHistory()
+                {
+                    ID = int.Parse(_book.Element("ID").Value),
+                    History = LoadHistory(_book.Element("History").Value)
+                });
+            }
+
+            xdoc1 = XDocument.Load("Data\\UsersHistory.xml");
+            foreach (var _book in xdoc1.Element("users").Elements("user"))
+            {
+                BooksRents.Add(new RentHistory()
+                {
+                    ID = int.Parse(_book.Element("ID").Value),
+                    History = LoadHistory(_book.Element("History").Value)
+                });
+            }
         }
 
         private void SaveData()
         {
-        
-        }
-
-        private List<int> LoadRentData(string input)
-        {
-            string BookIdCollection = input;
-            List<int> RentData = new List<int>();
-            if (input != null && input != "")
-            {
-                while (BookIdCollection.IndexOf(";") != -1)
-                {
-                    string BookId = BookIdCollection.Substring(0, BookIdCollection.IndexOf(";"));
-                    BookIdCollection = BookIdCollection.Substring(BookIdCollection.IndexOf(";") + 1);
-                    RentData.Add(int.Parse(BookId));
-                }
-                RentData.Add(int.Parse(BookIdCollection));
-            }
-            return RentData;
-        }
-
-
-        public void SaveData()
-        {
-            IEnumerable<XElement> serial = from user in users
+            IEnumerable<XElement> serial = from user in UsersRents
                                            select new XElement("user",
                                            new XElement("ID", user.ID.ToString()),
-                                           new XElement("EMail", user.EMail),
-                                           new XElement("Name", user.Name),
-                                           new XElement("Surname", user.Surname),
-                                           new XElement("RentHistory", string.Join(";", user.RentHistory))
+                                           new XElement("History", string.Join(";", user.History))
                                                );
             XElement doc = new XElement("users", serial);
-            doc.Save("users.xml");
+            doc.Save("Data\\UsersHistory.xml");
+
+            serial = from book in BooksRents
+                     select new XElement("user",
+                     new XElement("ID", book.ID.ToString()),
+                     new XElement("History", string.Join(";", book.History))
+                         );
+            doc = new XElement("books", serial);
+            doc.Save("Data\\BooksHistory.xml");
         }
+
+        private List<int> LoadHistory(string input)
+        {
+            string Collection = input;
+            List<int> History = new List<int>();
+            if (input != null && input != "")
+            {
+                while (Collection.IndexOf(";") != -1)
+                {
+                    string BookId = Collection.Substring(0, Collection.IndexOf(";"));
+                    Collection = Collection.Substring(Collection.IndexOf(";") + 1);
+                    History.Add(int.Parse(BookId));
+                }
+                History.Add(int.Parse(Collection));
+            }
+            return History;
+        }
+
+
+
     }
 }

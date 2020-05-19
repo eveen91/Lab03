@@ -11,6 +11,6 @@ namespace Lab03.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string EMail { get; set; }
-        public List<int> RentHistory { get; set; }
+        //public List<int> RentHistory { get; set; }
     }
 }
