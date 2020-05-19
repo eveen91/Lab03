@@ -15,11 +15,6 @@ namespace Lab03
         }
         public List<User> users = new List<User>();
 
-        public void AddBook(string ID, string EMail, string Name, string Surname)
-        {
-            users.Add(new User() { ID = int.Parse(ID), EMail = EMail, Name = Name, Surname = Surname });
-        }
-
         public List<User> LoadData()
         {
             XDocument xdoc1 = XDocument.Load("users.xml");

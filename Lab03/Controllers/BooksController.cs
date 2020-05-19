@@ -13,7 +13,9 @@ namespace Lab03.Controllers
     public class BooksController : ControllerBase
     {
         Books BooksList = new Books();
+
         //post
+        [HttpPost]
         public IActionResult AddBook([FromBody] Book GivenBook)
         {
             if (GivenBook.Author != "" && GivenBook.ID != 0 && GivenBook.Title != "")
@@ -58,10 +60,10 @@ namespace Lab03.Controllers
         }
 
         //post
-        [HttpPut]
-        public IActionResult UpdateBookById([FromBody] Book GivenBook)
+        [HttpPut("{Id}")]
+        public IActionResult UpdateBookById(string id,[FromBody] Book GivenBook)
         {
-            var book = BooksList.books.Find(x => x.ID == GivenBook.ID);
+            var book = BooksList.books.Find(x => x.ID == int.Parse(id));
             if (book == null)
             {
                 return StatusCode(400, "Bad Request");

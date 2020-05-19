@@ -11,10 +11,5 @@ namespace Lab03.Models
         public string Title { get; set; }
         public string Author { get; set; }
         public bool IsRented { get; set; }
-
-        public string ToString()
-        {
-            return ID.ToString() + " " + Title + " " + Author + " " + IsRented.ToString();
-        }
     }
 }

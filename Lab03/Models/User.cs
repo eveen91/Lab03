@@ -11,10 +11,5 @@ namespace Lab03.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public string EMail { get; set; }
-
-        public string ToString()
-        {
-            return ID.ToString() + " " + Name + " " + Surname + " " + EMail;
-        }
     }
 }

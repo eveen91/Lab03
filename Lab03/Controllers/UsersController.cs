@@ -61,13 +61,13 @@ namespace Lab03.Controllers
         }
 
 
-        [HttpPut]
-        public IActionResult UpdateUserById([FromBody] User GivenUser)
+        [HttpPut("{Id}")]
+        public IActionResult UpdateUserById(string Id,[FromBody] User GivenUser)
         {
-            var user = UserList.users.Find(x => x.ID == GivenUser.ID);
+            var user = UserList.users.Find(x => x.ID == int.Parse(Id));
             if (user == null)
             {
-                return StatusCode(400, "Bad Request");
+                return StatusCode(400, "User not found");
             }
             else
             {
@@ -84,7 +84,7 @@ namespace Lab03.Controllers
             var user = UserList.users.Find(x => x.ID == int.Parse(id));
             if (user == null)
             {
-                return StatusCode(400, "nope");
+                return StatusCode(400, "User not found");
             }
             else
             {
