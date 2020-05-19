@@ -9,21 +9,20 @@ namespace Lab03.Set
 {
     public class LibraryHistory
     {
-        List<RentHistory> UsersRents = new List<RentHistory>();
-        List<RentHistory> BooksRents = new List<RentHistory>();
+        private List<RentHistory> UsersRents = new List<RentHistory>();
+        private List<RentHistory> BooksRents = new List<RentHistory>();
 
         LibraryHistory()
         {
             LoadData();
         }
 
-        void NewRential(int BookId, int UserId)
+        public void NewRential(int BookId, int UserId)
         {
             UsersRents[UsersRents.FindIndex(x => x.ID == UserId)].History.Add(BookId);
             BooksRents[BooksRents.FindIndex(x => x.ID == BookId)].History.Add(UserId);
             SaveData();
         }
-
 
         public List<int> GetBooksRentedByUser(int UserId)
         {
@@ -95,8 +94,5 @@ namespace Lab03.Set
             }
             return History;
         }
-
-
-
     }
 }
