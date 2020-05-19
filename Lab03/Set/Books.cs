@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Lab03
+namespace Lab03.Set
 {
     public class Books
     {
@@ -18,7 +18,7 @@ namespace Lab03
 
         public List<Book> LoadData()
         {
-            XDocument xdoc1 = XDocument.Load("books.xml");
+            XDocument xdoc1 = XDocument.Load("Data\books.xml");
             //List<Book> books = new List<Book>();
             foreach (var _book in xdoc1.Element("books").Elements("book"))
             {

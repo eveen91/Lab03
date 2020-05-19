@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Lab03
+namespace Lab03.Set
 {
     public class Users
     {
@@ -17,6 +18,8 @@ namespace Lab03
 
         public List<User> LoadData()
         {
+            var assembly = Assembly.GetExecutingAssembly();
+            string resourceName = assembly.GetManifestResourceNames().Single(str => str.EndsWith("users.xml"));
             XDocument xdoc1 = XDocument.Load("users.xml");
             foreach (var _user in xdoc1.Element("users").Elements("user"))
             {
