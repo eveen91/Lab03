@@ -14,8 +14,8 @@ namespace Lab03.Controllers
     public class BooksController : ControllerBase
     {
         Books BooksList = new Books();
+        
 
-        //post
         [HttpPost]
         public IActionResult AddBook([FromBody] Book GivenBook)
         {
@@ -60,7 +60,7 @@ namespace Lab03.Controllers
             return BooksList.books;
         }
 
-        //post
+        
         [HttpPut("{Id}")]
         public IActionResult UpdateBookById(string id,[FromBody] Book GivenBook)
         {

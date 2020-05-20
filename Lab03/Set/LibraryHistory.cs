@@ -17,8 +17,17 @@ namespace Lab03.Set
             LoadData();
         }
 
-        public void NewRential(int BookId, int UserId)
+    public void NewRential(int BookId, int UserId)
         {
+            if (UsersRents.FindIndex(x => x.ID == UserId) == -1)
+            {
+                UsersRents.Add(new RentHistory { ID = UserId, History = new List<int>() });
+            }
+            if (BooksRents.FindIndex(x => x.ID == BookId) == -1)
+            {
+                BooksRents.Add(new RentHistory { ID = BookId, History = new List<int>() });
+            }
+
             UsersRents[UsersRents.FindIndex(x => x.ID == UserId)].History.Add(BookId);
             BooksRents[BooksRents.FindIndex(x => x.ID == BookId)].History.Add(UserId);
             SaveData();
@@ -41,20 +50,22 @@ namespace Lab03.Set
             XDocument xdoc1 = XDocument.Load("Data\\BooksHistory.xml");
             foreach (var _book in xdoc1.Element("books").Elements("book"))
             {
-                UsersRents.Add(new RentHistory()
+                BooksRents.Add(new RentHistory()
                 {
                     ID = int.Parse(_book.Element("ID").Value),
                     History = LoadHistory(_book.Element("History").Value)
                 });
             }
 
+
+            //TODO: _user
             xdoc1 = XDocument.Load("Data\\UsersHistory.xml");
-            foreach (var _book in xdoc1.Element("users").Elements("user"))
+            foreach (var _user in xdoc1.Element("users").Elements("user"))
             {
-                BooksRents.Add(new RentHistory()
+                UsersRents.Add(new RentHistory()
                 {
-                    ID = int.Parse(_book.Element("ID").Value),
-                    History = LoadHistory(_book.Element("History").Value)
+                    ID = int.Parse(_user.Element("ID").Value),
+                    History = LoadHistory(_user.Element("History").Value)
                 });
             }
         }

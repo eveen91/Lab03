@@ -1,7 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <users>
   <user>
     <ID>2</ID>
+    <History>2;3</History>
+  </user>
+  <user>
+    <ID>1</ID>
     <History>2</History>
   </user>
 </users>

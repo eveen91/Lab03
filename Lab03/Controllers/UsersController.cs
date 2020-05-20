@@ -15,7 +15,15 @@ namespace Lab03.Controllers
     {
         Users UserList = new Users();
 
-        //post
+        /* METHOD: POST
+           URI:https://localhost:44326/api/Users
+           BODY:
+           {
+           "ID":5,
+            "Name":"asd",
+            "Surname":"jlk",
+            "EMail":"aaa@3123"
+            }*/
         [HttpPost]
         public IActionResult AddUser([FromBody] User GivenUser)
         {
@@ -46,7 +54,8 @@ namespace Lab03.Controllers
             }
         }
 
-        //get id
+        //Method:GET
+        //URI:https://localhost:44326/api/Users/3
         [HttpGet("{Id}")]
         public User GetUserById(string Id)
         {
@@ -54,14 +63,23 @@ namespace Lab03.Controllers
             return query.First();
         }
 
-        //get
+        //Method:GET
+        //URI:https://localhost:44326/api/Users/
         [HttpGet]
         public List<User> GetAllUsers()
         {
             return UserList.users;
         }
 
-
+        /* METHOD: PUT
+           URI:https://localhost:44326/api/Users/5
+           BODY:
+           {
+           "ID":5,
+           "Name":"asd",
+           "Surname":"jlk",
+           "EMail":"aaa@3123"
+            }*/
         [HttpPut("{Id}")]
         public IActionResult UpdateUserById(string Id,[FromBody] User GivenUser)
         {
@@ -77,8 +95,8 @@ namespace Lab03.Controllers
                 return StatusCode(200, "ok");
             }
         }
-
-        //?delete
+        //Method:DELETE
+        //URI:https://localhost:44326/api/Users/5
         [HttpDelete("{Id}")]
         public IActionResult DeleteUserById(string id)
         {
