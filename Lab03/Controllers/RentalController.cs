@@ -66,8 +66,9 @@ namespace Lab03.Controllers
                 {
                     if (UsersList.users.FindIndex(x => x.ID == RentInfo.UserID) != -1)
                     {
-                        BooksList.books[BooksList.books.FindIndex(x => x.ID == RentInfo.BookID)].IsRented = true;
-                        BooksList.SaveData();
+                        BooksList.RentBook(RentInfo.BookID);
+                        //BooksList.books[BooksList.books.FindIndex(x => x.ID == RentInfo.BookID)].IsRented = true;
+                        //BooksList.SaveData();
                         libraryHistory.NewRential(RentInfo.BookID,RentInfo.UserID);
                         return StatusCode(200, "OK");
                     }

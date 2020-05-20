@@ -25,8 +25,7 @@ namespace Lab03.Controllers
                 {
                     try
                     {
-                        BooksList.books.Add(GivenBook);
-                        BooksList.SaveData();
+                        BooksList.AddBook(GivenBook);
                         return StatusCode(200, "Ok");
                     }
                     catch
@@ -71,8 +70,7 @@ namespace Lab03.Controllers
             }
             else
             {
-                BooksList.books[BooksList.books.FindIndex(x => x.ID == GivenBook.ID)] = GivenBook;
-                BooksList.SaveData();
+                BooksList.UpdateBook(id, GivenBook);
                 return StatusCode(200, "ok");
             }
         }
@@ -87,8 +85,7 @@ namespace Lab03.Controllers
             }
             else
             {
-                BooksList.books.Remove(book);
-                BooksList.SaveData();
+                BooksList.RemoveBook(id);
                 return StatusCode(200, "ok");
             }
         }

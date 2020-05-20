@@ -34,8 +34,7 @@ namespace Lab03.Controllers
                 {
                     try
                     {
-                        UserList.users.Add(GivenUser);
-                        UserList.SaveData();
+                        UserList.AddUser(GivenUser);
                         return StatusCode(200, "Ok");
                     }
                     catch
@@ -90,25 +89,23 @@ namespace Lab03.Controllers
             }
             else
             {
-                UserList.users[UserList.users.FindIndex(x => x.ID == GivenUser.ID)] = GivenUser;
-                UserList.SaveData();
+                UserList.UpdateUser(Id, GivenUser);
                 return StatusCode(200, "ok");
             }
         }
         //Method:DELETE
         //URI:https://localhost:44326/api/Users/5
         [HttpDelete("{Id}")]
-        public IActionResult DeleteUserById(string id)
+        public IActionResult DeleteUserById(string Id)
         {
-            var user = UserList.users.Find(x => x.ID == int.Parse(id));
+            var user = UserList.users.Find(x => x.ID == int.Parse(Id));
             if (user == null)
             {
                 return StatusCode(400, "User not found");
             }
             else
             {
-                UserList.users.Remove(user);
-                UserList.SaveData();
+                UserList.RemoveUser(Id);
                 return StatusCode(200, "ok");
             }
         }

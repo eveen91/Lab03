@@ -17,7 +17,7 @@ namespace Lab03.Set
         }
         public List<User> users = new List<User>();
 
-        public List<User> LoadData()
+        private List<User> LoadData()
         {
             XDocument xdoc1 = XDocument.Load("Data\\users.xml");
             foreach (var _user in xdoc1.Element("users").Elements("user"))
@@ -33,7 +33,25 @@ namespace Lab03.Set
             return users;
         }
 
-        public void SaveData()
+        public void AddUser(User NewUser)
+        {
+            users.Add(NewUser);
+            SaveData();
+        }
+
+        public void UpdateUser(string Id,User user)
+        {
+            users[users.FindIndex(x => x.ID == int.Parse(Id))] = user;
+            SaveData();
+        }
+
+        public void RemoveUser(string Id)
+        {
+            users.Remove(users.Find(x => x.ID == int.Parse(Id)));
+            SaveData();
+        }
+
+        private void SaveData()
         {
             IEnumerable<XElement> serial = from user in users
                                            select new XElement("user",

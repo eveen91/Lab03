@@ -17,7 +17,30 @@ namespace Lab03.Set
             LoadData();
         }
 
-        public List<Book> LoadData()
+        public void AddBook(Book NewBook)
+        {
+            books.Add(NewBook);
+            SaveData();
+        }
+
+        public void UpdateBook(string Id,Book book)
+        {
+            books[books.FindIndex(x => x.ID == int.Parse(Id))] = book;
+            SaveData();
+        }
+
+        public void RemoveBook(string Id)
+        {
+            books.Remove(books.Find(x => x.ID == int.Parse(Id)));
+            SaveData();
+        }
+        public void RentBook(int Id)
+        {
+            books[books.FindIndex(x => x.ID == Id)].IsRented = true;
+            SaveData();
+        }
+
+        private List<Book> LoadData()
         {
             XDocument xdoc1 = XDocument.Load("Data\\books.xml");
             foreach (var _book in xdoc1.Element("books").Elements("book"))
@@ -33,7 +56,7 @@ namespace Lab03.Set
             return books;
         }
 
-        public void SaveData()
+        private void SaveData()
         {
             IEnumerable<XElement> serial = from book in books
                                            select new XElement("book",
