@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,12 +34,16 @@ namespace Lab03
             {
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
                 options.DefaultSignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+                
             }).AddGoogle(options =>
             {
-                options.ClientId = "CLIENT_ID_FROM_GOOGLE";
-                options.ClientSecret = "CLIENT_SECRET_FROM_GOOGLE";
+                //options.ClientId = "688586764727-uais3fkc257rm7j4cga6p77tr3skug8t.apps.googleusercontent.com";
+                //options.ClientSecret = "zY7hwOzSGMH6XGcjEklhqdV8";
+                options.ClientId = "688586764727-qqvl04mof9dpcjpr8h16frk6fh0cqhn4.apps.googleusercontent.com";
+                options.ClientSecret = "eeQ1kjnq4erkMppqWl1pA3b0";
+                
             })
             .AddCookie(options =>
             {
@@ -54,13 +59,10 @@ namespace Lab03
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

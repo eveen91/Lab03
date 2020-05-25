@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Lab03.Models;
 using Lab03.Set;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +15,6 @@ namespace Lab03.Controllers
     public class BooksController : ControllerBase
     {
         Books BooksList = new Books();
-        
 
         [HttpPost]
         public IActionResult AddBook([FromBody] Book GivenBook)
@@ -46,6 +46,7 @@ namespace Lab03.Controllers
 
         //get id
         [HttpGet("{Id}")]
+        [Authorize]
         public Book GetBookById(string Id)
         {
             var query = from book in BooksList.books where book.ID.Equals(int.Parse(Id)) select book;
@@ -54,6 +55,7 @@ namespace Lab03.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public List<Book> GetAllBooks()
         {
             return BooksList.books;

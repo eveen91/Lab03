@@ -6,6 +6,7 @@ using Lab03.Set;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lab03.Controllers
 {
@@ -21,6 +22,7 @@ namespace Lab03.Controllers
         //URI:https://localhost:44326/api/Rental/BookRentedByUsers/3
         //userzy który wyporzyczyli daną książkę
         [HttpGet("BookRentedByUsers/{Id}")]
+        [Authorize]
         public List<User> BookRentedByUser(string Id)
         {
             List<User> LendersList = new List<User>();
@@ -36,6 +38,7 @@ namespace Lab03.Controllers
         //URI:https://localhost:44326/api/Rental/UserHistoryRent/3
         //książki wyporzyczone prze usera o id
         [HttpGet("UserHistoryRent/{Id}")]
+        [Authorize]
         public List<Book> UserHistoryRent(string Id)
         {
             var ListOfRentedBooks = libraryHistory.GetBooksRentedByUser(int.Parse(Id));

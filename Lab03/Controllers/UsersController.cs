@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Lab03.Models;
 using Lab03.Set;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -56,6 +57,7 @@ namespace Lab03.Controllers
         //Method:GET
         //URI:https://localhost:44326/api/Users/3
         [HttpGet("{Id}")]
+        [Authorize]
         public User GetUserById(string Id)
         {
             var query = from user in UserList.users where user.ID.Equals(int.Parse(Id)) select user;
@@ -65,8 +67,10 @@ namespace Lab03.Controllers
         //Method:GET
         //URI:https://localhost:44326/api/Users/
         [HttpGet]
+        [Authorize]
         public List<User> GetAllUsers()
         {
+            var user = this.User;
             return UserList.users;
         }
 
@@ -109,5 +113,7 @@ namespace Lab03.Controllers
                 return StatusCode(200, "ok");
             }
         }
+        
+
     }
 }
