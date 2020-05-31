@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <books>
   <book>
-    <ID>1</ID>
-    <Author>Magda Knedler</Author>
-    <Title>Położna z Auschwitz</Title>
-    <IsRented>False</IsRented>
-  </book>
-  <book>
     <ID>2</ID>
     <Author>Sharon Cameron</Author>
     <Title>Światło ukryte w mroku</Title>
@@ -16,6 +10,12 @@
     <ID>3</ID>
     <Author>bbb</Author>
     <Title>afss</Title>
+    <IsRented>True</IsRented>
+  </book>
+  <book>
+    <ID>5</ID>
+    <Author>AAAA</Author>
+    <Title>asd</Title>
     <IsRented>True</IsRented>
   </book>
 </books>

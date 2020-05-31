@@ -16,6 +16,15 @@ namespace Lab03.Controllers
     {
         Books BooksList = new Books();
 
+        /* METHOD: POST
+         URI:https://localhost:44326/api/Books
+        BODY:
+        {
+        "ID":5,
+        "Title":"asd",
+        "Author":"jlk",
+        "IsRented": true
+        }*/
         [HttpPost]
         public IActionResult AddBook([FromBody] Book GivenBook)
         {
@@ -44,6 +53,8 @@ namespace Lab03.Controllers
             }
         }
 
+        //Method:GET
+        //URI:https://localhost:44326/api/Books/1
         //get id
         [HttpGet("{Id}")]
         [Authorize]
@@ -53,7 +64,8 @@ namespace Lab03.Controllers
             query.First();
             return query.First();
         }
-
+        //Method:GET
+        //URI:https://localhost:44326/api/Books
         [HttpGet]
         [Authorize]
         public List<Book> GetAllBooks()
@@ -61,7 +73,15 @@ namespace Lab03.Controllers
             return BooksList.books;
         }
 
-        
+        /*Method:PUT
+        URI:https://localhost:44326/api/Books/1
+        BODY:
+        {
+        "ID":5,
+        "Title":"asd",
+        "Author":"jlk",
+        "IsRented": true
+        }*/
         [HttpPut("{Id}")]
         public IActionResult UpdateBookById(string id,[FromBody] Book GivenBook)
         {
@@ -77,6 +97,8 @@ namespace Lab03.Controllers
             }
         }
 
+        //Method:DELETE
+        //URI:https://localhost:44326/api/Books/1
         [HttpDelete("{Id}")]
         public IActionResult DeleteBookById(string id)
         {
